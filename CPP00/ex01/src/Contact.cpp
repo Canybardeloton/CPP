@@ -14,10 +14,6 @@
 
 Contact::Contact() : _first_name(""), _last_name(""), _nickname(""), _darkest_secret("")
 {
-	// std::cout << "_first_name : " << _first_name << std::endl;
-	// std::cout << "_last_name : " << _last_name << std::endl;
-	// std::cout << "_nickname : " << _nickname << std::endl;
-	// std::cout << "_darkest_secret : " << _darkest_secret << std::endl;
 }
 
 Contact::~Contact()

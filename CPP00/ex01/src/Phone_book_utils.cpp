@@ -144,6 +144,19 @@ void Phone_book::print_contact()
 	int			i;
 
 	index = 0;
+	std::cout << "    Index | First n. | Last na. | Nickname " << std::endl;
+	while (index < this->_last_contact)
+	{
+		Contact& contact_id = _contact[index];
+		std::cout << "        " << index << " |";
+		this->print_first_name(contact_id);
+		this->print_last_name(contact_id);
+		this->print_nickname(contact_id);
+		std::cout << std::endl;
+		index++;
+	}
+	if (index == 0)
+		return ;
 	std::cout << "--> Please type contact index : ";
 	std::getline(std::cin, input);
 	if (std::cin.eof())
@@ -167,12 +180,10 @@ void Phone_book::print_contact()
 			std::cout << "No contact at this index" << std::endl;
 			return ;
 		}
-		Contact& contact_id = _contact[index];
-		std::cout << "    Index | First n. | Last na. | Nickname " << std::endl;
-		std::cout << "        " << index << " |";
-		this->print_first_name(contact_id);
-		this->print_last_name(contact_id);
-		this->print_nickname(contact_id);
-		std::cout << std::endl;
+		std::cout << "First name : " << _contact[index].get_first_name() << std::endl;
+		std::cout << "Last name : " << _contact[index].get_last_name() << std::endl;
+		std::cout << "Nickname : " << _contact[index].get_nickname() << std::endl;
+		std::cout << "Phone number : " << _contact[index].get_phone_number() << std::endl;
+		std::cout << "Darkest Secret : " << _contact[index].get_secret() << std::endl;
 	}
 }

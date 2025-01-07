@@ -111,8 +111,13 @@ void	Phone_book::fill_phone_number(Contact& contact_id)
 void	Phone_book::fill_phonebook()
 {
 	Contact& contact_id = _contact[_index];
+	static int	round = 0;
 	if (_last_contact == 7)
-		contact_id = _contact[7];
+	{
+		contact_id = _contact[0];
+		_index = 0;
+		round = 1;
+	}
 	while (1)
 	{
 		if (std::cin.eof())
@@ -122,6 +127,14 @@ void	Phone_book::fill_phonebook()
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			continue;
+		}
+		if (round == 1)
+		{
+			contact_id.set_first_name("");
+			contact_id.set_last_name("");
+			contact_id.set_nickname("");
+			contact_id.set_phone_number("");
+			contact_id.set_secret("");
 		}
 		if (contact_id.get_first_name() == "")
 			fill_first_name(contact_id);

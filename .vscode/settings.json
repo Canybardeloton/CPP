@@ -84,6 +84,8 @@
 		"barrier": "cpp",
 		"latch": "cpp",
 		"semaphore": "cpp",
-		"source_location": "cpp"
+		"source_location": "cpp",
+		"format": "cpp",
+		"text_encoding": "cpp"
 	}
 }

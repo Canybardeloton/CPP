@@ -13,7 +13,6 @@
 #ifndef FIXED_HPP
 	#define FIXED_HPP
 
-# include <ieee754.h>
 # include <string>
 # include <iostream>
 
@@ -28,7 +27,7 @@ class Fixed
 		~Fixed();
 	private :
 		int					_fixed_value;
-		static const int	_bits_nbr;
+		static const int	_bits_nbr = 8;
 };
 
 #endif

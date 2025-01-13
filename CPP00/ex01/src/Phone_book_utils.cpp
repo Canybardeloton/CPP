@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:00:44 by agiliber          #+#    #+#             */
-/*   Updated: 2025/01/02 11:43:06 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/01/13 12:18:53 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,11 +141,16 @@ void Phone_book::print_contact()
 {
 	int			index;
 	std::string	input;
-	int			i;
+	int			i = 0;
+	int			size;
 
 	index = 0;
 	std::cout << "    Index | First n. | Last na. | Nickname " << std::endl;
-	while (index < this->_last_contact)
+	if (_round == 1)
+		size = 8;
+	else
+		size = _index;
+	while (index < size)
 	{
 		Contact& contact_id = _contact[index];
 		std::cout << "        " << index << " |";
@@ -167,23 +172,32 @@ void Phone_book::print_contact()
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		return ;
 	}
-	else
+	if (input.empty())
 	{
-		if (input.empty())
+		std::cout << "Index cannot be empty!" << std::endl;
+		return;
+	}
+	while (input[i])
+	{
+		if (input[i] < 48 || input[i] > 57)
 		{
-			std::cout << "Index cannot be empty!" << std::endl;
-			return;
-		}
-		index = string_to_int(input);
-		if (index < 0 || index > 7)
-		{
-			std::cout << "No contact at this index" << std::endl;
+			std::cout << "Invalid index!" << std::endl;
 			return ;
 		}
+		i++;
+	}
+	index = string_to_int(input);
+	if (index >= 0 && index <= 7)
+	{
 		std::cout << "First name : " << _contact[index].get_first_name() << std::endl;
 		std::cout << "Last name : " << _contact[index].get_last_name() << std::endl;
 		std::cout << "Nickname : " << _contact[index].get_nickname() << std::endl;
 		std::cout << "Phone number : " << _contact[index].get_phone_number() << std::endl;
 		std::cout << "Darkest Secret : " << _contact[index].get_secret() << std::endl;
+	}
+	else
+	{
+		std::cout << "Invalid index!" << std::endl;
+		return;
 	}
 }

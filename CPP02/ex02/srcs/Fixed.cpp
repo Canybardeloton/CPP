@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:56:50 by agiliber          #+#    #+#             */
-/*   Updated: 2025/01/13 13:58:46 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:42:09 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,48 +61,48 @@ void	Fixed::setRawBits(int const raw)
 
 float	Fixed::toFloat(void) const
 {
-	return (float)_fixed_value / (float)(1 << _bits_nbr);
+	return ((float)_fixed_value / (float)(1 << _bits_nbr));
 }
 
 int	Fixed::toInt(void) const
 {
-	return _fixed_value >> _bits_nbr;
+	return (_fixed_value >> _bits_nbr);
 }
 
 std::ostream&	operator<<(std::ostream& o, Fixed const& rSym)
 {
 	o << rSym.toFloat();
-	return o;
+	return (o);
 }
 
 bool	Fixed::operator>(Fixed const& rSym) const
 {
-	return this->_fixed_value > rSym._fixed_value;
+	return (this->_fixed_value > rSym._fixed_value);
 }
 
 bool	Fixed::operator>=(Fixed const& rSym) const
 {
-	return this->_fixed_value >= rSym._fixed_value;
+	return (this->_fixed_value >= rSym._fixed_value);
 }
 
 bool	Fixed::operator<(Fixed const& rSym) const
 {
-	return this->_fixed_value < rSym._fixed_value;
+	return (this->_fixed_value < rSym._fixed_value);
 }
 
 bool	Fixed::operator<=(Fixed const& rSym) const
 {
-	return this->_fixed_value <= rSym._fixed_value;
+	return (this->_fixed_value <= rSym._fixed_value);
 }
 
 bool	Fixed::operator==(Fixed const& rSym) const
 {
-	return this->_fixed_value == rSym._fixed_value;
+	return (this->_fixed_value == rSym._fixed_value);
 }
 
 bool	Fixed::operator!=(Fixed const& rSym) const
 {
-	return this->_fixed_value != rSym._fixed_value;
+	return (this->_fixed_value != rSym._fixed_value);
 }
 
 Fixed	Fixed::operator+(Fixed const& rSym) const
@@ -125,7 +125,7 @@ Fixed	Fixed::operator*(Fixed const& rSym) const
 {
 	Fixed tmp;
 
-	tmp.setRawBits(this->_fixed_value * rSym._fixed_value);
+	tmp.setRawBits((this->_fixed_value * rSym._fixed_value) >> _bits_nbr);
 	return (tmp);
 }
 
@@ -133,6 +133,55 @@ Fixed	Fixed::operator/(Fixed const& rSym) const
 {
 	Fixed tmp;
 
-	tmp.setRawBits(this->_fixed_value / rSym._fixed_value);
+	tmp.setRawBits((this->_fixed_value << _bits_nbr) / rSym._fixed_value);
 	return (tmp);
+}
+
+Fixed& Fixed::operator++(void)
+{
+	this->_fixed_value++;
+	return (*this);
+}
+
+Fixed	Fixed::operator++(int)
+{
+	Fixed tmp(*this);
+
+	operator++();
+	return (tmp);
+}
+
+Fixed& Fixed::operator--(void)
+{
+	this->_fixed_value--;
+	return (*this);
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed tmp(*this);
+
+	operator--();
+	return (tmp);
+}
+
+Fixed const&  Fixed::max(Fixed const &a, Fixed const &b)
+{
+	return (a > b ? a : b);
+}
+
+Fixed&  Fixed::max(Fixed &a, Fixed &b)
+{
+	return (a > b ? a : b);
+}
+
+Fixed&  Fixed::min(Fixed &a, Fixed &b)
+{
+	return (a < b ? a : b);
+}
+
+
+Fixed const&  Fixed::min(Fixed const &a, Fixed const &b)
+{
+	return (a < b ? a : b);
 }

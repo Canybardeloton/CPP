@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:56:06 by agiliber          #+#    #+#             */
-/*   Updated: 2025/01/13 13:58:40 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:28:21 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ class Fixed
 		Fixed	operator-(Fixed const& rSym) const;
 		Fixed	operator*(Fixed const& rSym) const;
 		Fixed	operator/(Fixed const& rSym) const;
+		Fixed&	operator++(void);
+		Fixed	operator++(int);
+		Fixed&	operator--(void);
+		Fixed	operator--(int);
+		static Fixed&  max(Fixed &a, Fixed &b);
+		static Fixed const&  max(Fixed const &a, Fixed const &b);
+		static Fixed&  min(Fixed &a, Fixed &b);
+		static Fixed const&  min(Fixed const &a, Fixed const &b);
 		~Fixed();
 	private :
 		int					_fixed_value;

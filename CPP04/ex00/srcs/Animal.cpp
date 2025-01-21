@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:30:59 by agiliber          #+#    #+#             */
-/*   Updated: 2025/01/21 10:58:57 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:21:42 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ Animal &Animal::operator=(const Animal &assign)
 
 void	Animal::makeSound() const
 {
-	this->soundType("");
-	std::cout << sound << std::endl;
+	std::cout << this->sound << std::endl;
 }
 
 std::string Animal::getType() const

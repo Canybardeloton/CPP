@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:29:20 by agiliber          #+#    #+#             */
-/*   Updated: 2025/01/21 10:53:13 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:29:22 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,5 @@ class Cat : public Animal
 		Cat &operator=(const Cat &assign);
 		~Cat();
 	private:
-		void	soundType(std::string const sound);
-		std::string	setSound() const;
 	protected:
 };

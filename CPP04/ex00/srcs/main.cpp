@@ -6,11 +6,13 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:30:44 by agiliber          #+#    #+#             */
-/*   Updated: 2025/01/21 10:44:35 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:16:57 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Animal.hpp"
+#include "../includes/Cat.hpp"
+#include "../includes/Dog.hpp"
 
 int	main()
 {
@@ -23,5 +25,8 @@ int	main()
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
 	meta->makeSound();
+	delete meta;
+	delete j;
+	delete i;
 	return 0;
 }

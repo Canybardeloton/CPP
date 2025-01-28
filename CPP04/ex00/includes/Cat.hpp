@@ -17,10 +17,11 @@
 class Cat : public Animal
 {
 	public:
-		Cat();
+		Cat(void);
 		Cat(const Cat &copy);
 		Cat &operator=(const Cat &assign);
-		~Cat();
+		virtual ~Cat();
+		virtual void makeSound(void) const;
 	private:
 	protected:
 };

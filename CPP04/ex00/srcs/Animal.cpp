@@ -12,7 +12,7 @@
 
 #include "../includes/Animal.hpp"
 
-Animal::Animal()
+Animal::Animal(void) : _type("Animal")
 {
 	std::cout << "Animal constructor called" << std::endl;
 }
@@ -29,16 +29,16 @@ Animal::Animal(const Animal &copy)
 
 Animal &Animal::operator=(const Animal &assign)
 {
-	this->type = assign.type;
+	this->_type = assign._type;
 	return *this;
 }
 
-void	Animal::makeSound() const
+void	Animal::makeSound(void) const
 {
-	std::cout << this->sound << std::endl;
+	std::cout << "i'm just an animal" << std::endl;
 }
 
 std::string Animal::getType() const
 {
-	return this->type;
+	return this->_type;
 }

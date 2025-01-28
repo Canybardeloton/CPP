@@ -18,14 +18,13 @@
 class Animal
 {
 	public:
-		Animal();
+		Animal(void);
 		Animal(const Animal &copy);
 		Animal &operator=(const Animal &assign);
-		void	makeSound() const;
+		virtual void	makeSound() const;
 		std::string getType() const;
-		~Animal();
+		virtual ~Animal();
 	private:
 	protected:
-		std::string type;
-		std::string sound;
+		std::string _type;
 };

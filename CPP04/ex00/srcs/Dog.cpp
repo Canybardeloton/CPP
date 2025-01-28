@@ -12,10 +12,8 @@
 
 #include "../includes/Dog.hpp"
 
-Dog::Dog()
+Dog::Dog(void) : Animal("Dog")
 {
-	this->type = "Dog";
-	this->sound = "Wouaf";
 	std::cout << "Dog constructor called" << std::endl;
 }
 
@@ -31,6 +29,11 @@ Dog::Dog(const Dog &copy)
 
 Dog &Dog::operator=(const Dog &assign)
 {
-	this->type = assign.type;
+	this->_type = assign._type;
 	return *this;
+}
+
+void	Dog::makeSound(void) const
+{
+	std::cout << "Wouaf" << std::endl;
 }

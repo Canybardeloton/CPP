@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongDog.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 10:28:25 by agiliber          #+#    #+#             */
-/*   Updated: 2025/01/29 10:20:34 by agiliber         ###   ########.fr       */
+/*   Created: 2025/01/29 10:14:37 by agiliber          #+#    #+#             */
+/*   Updated: 2025/01/29 10:15:31 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cat.hpp"
+#pragma once
 
-Cat::Cat() : Animal("Cat")
-{
-	std::cout << "Cat constructor called" << std::endl;
-}
+#include "WrongAnimal.hpp"
 
-Cat::~Cat()
+class WrongDog : public WrongAnimal
 {
-	std::cout << "Cat destructor called" << std::endl;
-}
-
-Cat::Cat(const Cat &copy)
-{
-	*this = copy;
-}
-
-Cat &Cat::operator=(const Cat &assign)
-{
-	this->_type = assign._type;
-	return *this;
-}
-
-void	Cat::makeSound(void) const
-{
-	std::cout << "Meouw" << std::endl;
-}
+	public:
+		WrongDog(void);
+		WrongDog(const WrongDog& copy);
+		virtual ~WrongDog();
+		// METHODS
+		virtual void makeSound(void) const;
+		// OPERATOR OVERLOAD
+		WrongDog& operator=(WrongDog const& rhs);
+};

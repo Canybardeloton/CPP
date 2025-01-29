@@ -6,7 +6,7 @@
 #    By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/27 13:42:06 by agiliber          #+#    #+#              #
-#    Updated: 2025/01/21 10:30:48 by agiliber         ###   ########.fr        #
+#    Updated: 2025/01/29 10:22:45 by agiliber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC_DIR = srcs/
 OBJ_DIR = obj/
 DEP_DIR = dep/
 
-SRC = main.cpp Dog.cpp Cat.cpp Animal.cpp
+SRC = main.cpp Dog.cpp Cat.cpp Animal.cpp WrongAnimal.cpp WrongDog.cpp
 OBJ = ${SRC:%.cpp=%.o}
 DEP = ${OBJ:%.o=%.d}
 

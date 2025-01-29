@@ -6,15 +6,14 @@
 #    By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/27 13:42:06 by agiliber          #+#    #+#              #
-#    Updated: 2025/01/29 10:47:48 by agiliber         ###   ########.fr        #
+#    Updated: 2025/01/29 11:49:45 by agiliber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
 FLAGS = -Wextra -Werror -std=c++98 -I./includes/
 RM = rm -rf
-EXEC = Polymorphisme
-
+EXEC = Poly
 RED    = \033[31m
 GREEN  = \033[32m
 YELLOW = \033[33m
@@ -38,10 +37,10 @@ DEPF = $(addprefix $(DEP_DIR), $(DEP))
 .SILENCE : $(CC) $(FLAGS) $(SRC) $(EXEC) $(OBJ) $(OBJF) $(OBJ_DIR) \
 	$(DEP_DIR) $(SRC_DIR)
 
-all : Polymorphisme
+all : Poly
 
-Polymorphisme : $(OBJF)
-	@echo "${CYAN}Compiling Polymorphisme...${RESET}"
+Poly : $(OBJF)
+	@echo "${CYAN}Compiling Poly...${RESET}"
 	@$(CC) $(FLAGS) $(SRCF) -o $(EXEC)
 	@echo "${GREEN}Succes!!!${RESET}"
 
@@ -55,13 +54,13 @@ $(DEP_DIR) :
 	@mkdir -p $(DEP_DIR)
 
 clean :
-	@echo "${CYAN}Cleaning Polymorphisme...${RESET}"
+	@echo "${CYAN}Cleaning Poly...${RESET}"
 	@$(RM) $(OBJ_DIR)
 	@$(RM) $(DEP_DIR)
 	@echo "${GREEN}Succes!!!${RESET}"
 
 fclean :
-	@echo "${CYAN}Cleaning Polymorphisme...${RESET}"
+	@echo "${CYAN}Cleaning Poly...${RESET}"
 	@$(RM) $(OBJ_DIR)
 	@$(RM) $(DEP_DIR)
 	@$(RM) $(EXEC)

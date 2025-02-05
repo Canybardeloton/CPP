@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 10:40:32 by agiliber          #+#    #+#             */
-/*   Updated: 2024/12/03 11:07:03 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/02/03 10:39:13 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Zombie*	zombieHorde(int N, std::string name)
 	for (i = 0; i < N; i++)
 	{
 		zombieHorde[i].setName(name);
-		zombieHorde->announce();
+		zombieHorde[i].announce();
 	}
 	return (zombieHorde);
 }

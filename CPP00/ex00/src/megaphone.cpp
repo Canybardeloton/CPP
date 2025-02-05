@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:54:04 by agiliber          #+#    #+#             */
-/*   Updated: 2024/12/20 16:51:09 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/01/13 14:35:10 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ int	main(int ac, char **av)
 				std::cout << (char)std::toupper(av[i][j]);
 				j++;
 			}
-			if (av[i + 1] != NULL)
-				std::cout << " ";
 			i++;
 		}
 		std::cout << std::endl;

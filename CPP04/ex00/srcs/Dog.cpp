@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:28:25 by agiliber          #+#    #+#             */
-/*   Updated: 2025/01/29 10:20:36 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:26:16 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Dog::~Dog()
 	std::cout << "Dog destructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &copy)
+Dog::Dog(const Dog &copy) : Animal(copy)
 {
 	*this = copy;
 }

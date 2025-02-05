@@ -6,16 +6,17 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:39:33 by agiliber          #+#    #+#             */
-/*   Updated: 2025/02/04 14:12:49 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:13:20 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
-	std::cout << "Bureaucrat " << name << " created" << std::endl;
 	gradeCheck();
+	_grade = grade;
+	std::cout << "Bureaucrat " << name << " created" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
@@ -74,6 +75,19 @@ void	Bureaucrat::decrement_grade()
 {
 	_grade++;
 	gradeCheck();
+}
+
+void	Bureaucrat::signForm(Form& form)
+{
+	try
+	{
+		if (form.isSigned() == true)
+			std::cout << _name << " signed " << form.getName();
+	}
+	catch(const std::exception& e)
+	{
+			std::cout << _name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+	}
 }
 
 std::string Bureaucrat::getName() const

@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:34:34 by agiliber          #+#    #+#             */
-/*   Updated: 2025/02/04 14:12:46 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:13:16 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <exception>
 #include <ostream>
 #include <string>
+#include "Form.hpp"
 
 class Bureaucrat
 {
@@ -26,6 +27,8 @@ class Bureaucrat
 		void	increment_grade();
 		void	decrement_grade();
 		int getGrade() const;
+		void	gradeCheck();
+		void	signForm(Form& form);
 		std::string getName() const;
 		~Bureaucrat();
 
@@ -48,10 +51,8 @@ class Bureaucrat
 		};
 	private:
 
-		void	gradeCheck();
 		void	gradeTooHigh(void);
 		void	gradeTooLow(void);
-
 
 		std::string const _name;
 		int _grade;

@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:00:44 by agiliber          #+#    #+#             */
-/*   Updated: 2025/01/13 12:18:53 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/01/13 14:30:54 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ void Phone_book::print_contact()
 	index = string_to_int(input);
 	if (index >= 0 && index <= 7)
 	{
+		std::cout << "Index : " << index << std::endl;
 		std::cout << "First name : " << _contact[index].get_first_name() << std::endl;
 		std::cout << "Last name : " << _contact[index].get_last_name() << std::endl;
 		std::cout << "Nickname : " << _contact[index].get_nickname() << std::endl;

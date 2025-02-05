@@ -5,22 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 12:57:09 by agiliber          #+#    #+#             */
-/*   Updated: 2025/01/06 15:51:18 by agiliber         ###   ########.fr       */
+/*   Created: 2025/02/04 12:29:18 by agiliber          #+#    #+#             */
+/*   Updated: 2025/02/04 14:16:25 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Fixed.hpp"
+#include "../include/Bureaucrat.hpp"
 
-int	main(void)
+int main()
 {
-	Fixed a;
-	Fixed b(a);
-	Fixed c;
-	c = b;
-
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
+	std::string name = "Armel";
+	std::string formName = "Form-42069";
+	try
+	{
+		Bureaucrat bbl(name, 51);
+		Form	formy(formName, 50, 55);
+		formy.beSigned(bbl);
+		std::cout << bbl << std::endl;
+		std::cout << formy << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	return 0;
 }

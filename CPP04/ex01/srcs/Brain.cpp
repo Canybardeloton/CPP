@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:46:52 by agiliber          #+#    #+#             */
-/*   Updated: 2025/01/29 11:45:17 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:53:56 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Brain::~Brain()
 Brain::Brain(const Brain& copy)
 {
 	std::cout << "Brain copy constructor called" << std::endl;
-	for (size_t i = 0; i < 100; i++)
+	for (int i = 0; i < 100; i++)
 		ideas[i] = copy.ideas[i];
 }
 
@@ -45,7 +45,7 @@ void	Brain::overthinkIdeas()
 		"toilet paper", "toothpaste", "shampoo", "soap", "towel", "toothbrush",
 	};
 	for (int i = 0; i < 100; i++)
-		this->ideas[i] = randomThings[rand() % 12];
+		this->ideas[i] = randomThings[rand() % 6];
 }
 
 

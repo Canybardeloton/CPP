@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:48:15 by agiliber          #+#    #+#             */
-/*   Updated: 2024/12/04 14:02:36 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/02/03 10:51:29 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 HumanA::HumanA(std::string name, Weapon& weapon) : _name(name), _weapon(weapon)
 {
+	std::cout << _name << " is constructed" << std::endl;
 	std::cout << _name << " takes a " << _weapon.getType() << std::endl;
 }
 

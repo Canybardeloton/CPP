@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:56:50 by agiliber          #+#    #+#             */
-/*   Updated: 2025/01/13 16:42:09 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:09:46 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,71 +69,71 @@ int	Fixed::toInt(void) const
 	return (_fixed_value >> _bits_nbr);
 }
 
-std::ostream&	operator<<(std::ostream& o, Fixed const& rSym)
+std::ostream&	operator<<(std::ostream& out, Fixed const& obj)
 {
-	o << rSym.toFloat();
-	return (o);
+	out << obj.toFloat();
+	return (out);
 }
 
-bool	Fixed::operator>(Fixed const& rSym) const
+bool	Fixed::operator>(Fixed const& obj) const
 {
-	return (this->_fixed_value > rSym._fixed_value);
+	return (this->_fixed_value > obj._fixed_value);
 }
 
-bool	Fixed::operator>=(Fixed const& rSym) const
+bool	Fixed::operator>=(Fixed const& obj) const
 {
-	return (this->_fixed_value >= rSym._fixed_value);
+	return (this->_fixed_value >= obj._fixed_value);
 }
 
-bool	Fixed::operator<(Fixed const& rSym) const
+bool	Fixed::operator<(Fixed const& obj) const
 {
-	return (this->_fixed_value < rSym._fixed_value);
+	return (this->_fixed_value < obj._fixed_value);
 }
 
-bool	Fixed::operator<=(Fixed const& rSym) const
+bool	Fixed::operator<=(Fixed const& obj) const
 {
-	return (this->_fixed_value <= rSym._fixed_value);
+	return (this->_fixed_value <= obj._fixed_value);
 }
 
-bool	Fixed::operator==(Fixed const& rSym) const
+bool	Fixed::operator==(Fixed const& obj) const
 {
-	return (this->_fixed_value == rSym._fixed_value);
+	return (this->_fixed_value == obj._fixed_value);
 }
 
-bool	Fixed::operator!=(Fixed const& rSym) const
+bool	Fixed::operator!=(Fixed const& obj) const
 {
-	return (this->_fixed_value != rSym._fixed_value);
+	return (this->_fixed_value != obj._fixed_value);
 }
 
-Fixed	Fixed::operator+(Fixed const& rSym) const
+Fixed	Fixed::operator+(Fixed const& obj) const
 {
 	Fixed tmp;
 
-	tmp.setRawBits(this->_fixed_value + rSym._fixed_value);
+	tmp.setRawBits(this->_fixed_value + obj._fixed_value);
 	return (tmp);
 }
 
-Fixed	Fixed::operator-(Fixed const& rSym) const
+Fixed	Fixed::operator-(Fixed const& obj) const
 {
 	Fixed tmp;
 
-	tmp.setRawBits(this->_fixed_value - rSym._fixed_value);
+	tmp.setRawBits(this->_fixed_value - obj._fixed_value);
 	return (tmp);
 }
 
-Fixed	Fixed::operator*(Fixed const& rSym) const
+Fixed	Fixed::operator*(Fixed const& obj) const
 {
 	Fixed tmp;
 
-	tmp.setRawBits((this->_fixed_value * rSym._fixed_value) >> _bits_nbr);
+	tmp.setRawBits((this->_fixed_value * obj._fixed_value) >> _bits_nbr);
 	return (tmp);
 }
 
-Fixed	Fixed::operator/(Fixed const& rSym) const
+Fixed	Fixed::operator/(Fixed const& obj) const
 {
 	Fixed tmp;
 
-	tmp.setRawBits((this->_fixed_value << _bits_nbr) / rSym._fixed_value);
+	tmp.setRawBits((this->_fixed_value << _bits_nbr) / obj._fixed_value);
 	return (tmp);
 }
 

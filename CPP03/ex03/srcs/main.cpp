@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScaveTrap.hpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 11:48:51 by agiliber          #+#    #+#             */
-/*   Updated: 2025/02/12 14:17:08 by agiliber         ###   ########.fr       */
+/*   Created: 2025/01/14 11:30:44 by agiliber          #+#    #+#             */
+/*   Updated: 2025/01/14 16:00:05 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "../includes/FragTrap.hpp"
 
-#include "ClapTrap.hpp"
-
-class ScaveTrap : public ClapTrap
+int	main()
 {
-	public:
-		ScaveTrap(std::string name);
-		ScaveTrap(ScaveTrap const& copy);
-		ScaveTrap&	operator=(ScaveTrap const& copy);
-		void	attack(const std::string& target);
-		void	guardGate(void);
-		~ScaveTrap();
-};
+	ClapTrap Hero("Bernard");
+	ScaveTrap Robot("Diego");
+	FragTrap Mutant("Arthur");
+
+	Mutant.attack("Stephane");
+	Robot.attack("Stephane");
+	Hero.attack("Stephane");
+	Hero.beRepaired(2);
+	Robot.beRepaired(10);
+	Mutant.beRepaired(10);
+}

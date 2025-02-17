@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScaveTrap.hpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 11:48:51 by agiliber          #+#    #+#             */
-/*   Updated: 2025/02/12 14:17:08 by agiliber         ###   ########.fr       */
+/*   Created: 2025/01/06 12:57:09 by agiliber          #+#    #+#             */
+/*   Updated: 2025/02/10 13:14:47 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "../includes/Fixed.hpp"
 
-#include "ClapTrap.hpp"
+#include "../includes/Fixed.hpp"
 
-class ScaveTrap : public ClapTrap
+int	main(void)
 {
-	public:
-		ScaveTrap(std::string name);
-		ScaveTrap(ScaveTrap const& copy);
-		ScaveTrap&	operator=(ScaveTrap const& copy);
-		void	attack(const std::string& target);
-		void	guardGate(void);
-		~ScaveTrap();
-};
+	Fixed a;
+	Fixed b(a);
+	Fixed c;
+	c = b;
+
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+	return 0;
+}

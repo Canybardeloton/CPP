@@ -6,14 +6,14 @@
 #    By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/27 13:42:06 by agiliber          #+#    #+#              #
-#    Updated: 2025/02/12 10:12:20 by agiliber         ###   ########.fr        #
+#    Updated: 2025/02/12 14:28:53 by agiliber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes/
+FLAGS = -Wextra -Werror -std=c++98 -I./includes/
 RM = rm -rf
-EXEC = Fixed
+EXEC = DiamondTrap
 
 RED    = \033[31m
 GREEN  = \033[32m
@@ -27,7 +27,7 @@ SRC_DIR = srcs/
 OBJ_DIR = obj/
 DEP_DIR = dep/
 
-SRC = Fixed.cpp main.cpp
+SRC = ClapTrap.cpp ScaveTrap.cpp main.cpp FragTrap.cpp
 OBJ = ${SRC:%.cpp=%.o}
 DEP = ${OBJ:%.o=%.d}
 
@@ -38,10 +38,10 @@ DEPF = $(addprefix $(DEP_DIR), $(DEP))
 .SILENCE : $(CC) $(FLAGS) $(SRC) $(EXEC) $(OBJ) $(OBJF) $(OBJ_DIR) \
 	$(DEP_DIR) $(SRC_DIR)
 
-all : Fixed
+all : DiamondTrap
 
-Fixed : $(OBJF)
-	@echo "${CYAN}Compiling Fixed...${RESET}"
+DiamondTrap : $(OBJF)
+	@echo "${CYAN}Compiling DiamondTrap...${RESET}"
 	@$(CC) $(FLAGS) $(SRCF) -o $(EXEC)
 	@echo "${GREEN}Succes!!!${RESET}"
 
@@ -55,13 +55,13 @@ $(DEP_DIR) :
 	@mkdir -p $(DEP_DIR)
 
 clean :
-	@echo "${CYAN}Cleaning Fixed...${RESET}"
+	@echo "${CYAN}Cleaning DiamondTrap...${RESET}"
 	@$(RM) $(OBJ_DIR)
 	@$(RM) $(DEP_DIR)
 	@echo "${GREEN}Succes!!!${RESET}"
 
 fclean :
-	@echo "${CYAN}Cleaning Fixed...${RESET}"
+	@echo "${CYAN}Cleaning DiamondTrap...${RESET}"
 	@$(RM) $(OBJ_DIR)
 	@$(RM) $(DEP_DIR)
 	@$(RM) $(EXEC)

@@ -6,11 +6,11 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:50:29 by agiliber          #+#    #+#             */
-/*   Updated: 2025/02/12 14:39:20 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:27:09 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ScaveTrap.hpp"
+#include "../includes/FragTrap.hpp"
 
 ScaveTrap::ScaveTrap(std::string name) : ClapTrap::ClapTrap(name)
 {
@@ -22,7 +22,7 @@ ScaveTrap::ScaveTrap(std::string name) : ClapTrap::ClapTrap(name)
 
 ScaveTrap::~ScaveTrap()
 {
-	std::cout << "ScaveTrap " << _name << " has been destructed!" << std::endl;
+	std::cout << "ScaveTrap has been destructed!" << std::endl;
 }
 
 ScaveTrap::ScaveTrap(const ScaveTrap& copy) : ClapTrap::ClapTrap(copy)
@@ -47,7 +47,7 @@ void	ScaveTrap::attack(const std::string& target)
 {
 	ScaveTrap Enemy(target);
 
-	if (this->_EnergyPoints > 0 && this->_HitPoints > 0)
+	if (this->_EnergyPoints > 0 && Enemy._HitPoints > 0)
 	{
 		std::cout << "ScaveTrap " << this->_name << " attacks " << target << ", causing " << this->_AttackDmage << " points of damage!" << std::endl;
 		Enemy.takeDamage(this->_AttackDmage);
@@ -57,5 +57,5 @@ void	ScaveTrap::attack(const std::string& target)
 
 void	ScaveTrap::guardGate(void)
 {
-	std::cout << "ScaveTrap " << _name << " is now in Gate keeper mode." << std::endl;
+	std::cout << "ScaveTrap is now in Gate keeper mode." << std::endl;
 }

@@ -6,12 +6,12 @@
 #    By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/27 13:42:06 by agiliber          #+#    #+#              #
-#    Updated: 2025/01/06 15:51:48 by agiliber         ###   ########.fr        #
+#    Updated: 2025/02/12 10:12:25 by agiliber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
-FLAGS = -Wextra -Werror -std=c++98 -I./includes/
+FLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes/
 RM = rm -rf
 EXEC = Fixed
 

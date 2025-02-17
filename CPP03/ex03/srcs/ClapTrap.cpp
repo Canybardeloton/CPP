@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:47:08 by agiliber          #+#    #+#             */
-/*   Updated: 2025/02/12 14:24:21 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:26:50 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _HitPoints(10), _AttackDmage
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "Claptrap destructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& copy)
@@ -60,7 +60,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->_EnergyPoints > 0 && this->_HitPoints < 10 && this->_HitPoints > 0)
+	if (this->_EnergyPoints > 0 && this->_HitPoints < 10)
 	{
 		if (this->_HitPoints + amount <= 10)
 			this->_HitPoints = this->_HitPoints + amount;

@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:56:50 by agiliber          #+#    #+#             */
-/*   Updated: 2025/01/06 16:04:42 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:45:26 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int	Fixed::toInt(void) const
 	return _fixed_value >> _bits_nbr;
 }
 
-std::ostream&	operator<<(std::ostream& o, Fixed const& rSym)
+std::ostream&	operator<<(std::ostream& out, Fixed const& obj)
 {
-	o << rSym.toFloat();
-	return o;
+	out << obj.toFloat();
+	return out;
 }

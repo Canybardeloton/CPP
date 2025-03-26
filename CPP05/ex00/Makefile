@@ -6,12 +6,12 @@
 #    By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/27 13:42:06 by agiliber          #+#    #+#              #
-#    Updated: 2025/02/04 10:34:18 by agiliber         ###   ########.fr        #
+#    Updated: 2025/03/26 16:16:27 by agiliber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
-FLAGS = -Wextra -Werror -std=c++98 -I./includes/
+FLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes/
 RM = rm -rf
 EXEC = Bureaucrat
 

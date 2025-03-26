@@ -46,8 +46,8 @@ class Bureaucrat
 					return ("Grade is too low");
 				}
 		};
-	private:
 
+	private:
 		void	gradeCheck();
 		void	gradeTooHigh(void);
 		void	gradeTooLow(void);

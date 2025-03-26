@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:29:18 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/26 09:38:40 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/26 16:09:07 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 int main()
 {
-	std::string name = "Armel";
-	std::string formName = "Form-42069";
 	try
 	{
-		Bureaucrat bbl(name, 51);
-		Form	formy(formName, 52, 55);
-		formy.beSigned(bbl);
+		Bureaucrat bbl("Armel", 52);
+		Bureaucrat bbl2("Arthur", 56);
+		Form	formy("Form-42069", 55, 55);
 		std::cout << bbl << std::endl;
+		std::cout << bbl2 << std::endl;
 		std::cout << formy << std::endl;
+		formy.beSigned(bbl);
+		std::cout << formy << std::endl;
+		formy.beSigned(bbl2);
 	}
 	catch(const std::exception& e)
 	{

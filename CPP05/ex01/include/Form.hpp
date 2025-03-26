@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:48:41 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/26 09:29:36 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/26 16:02:09 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,9 @@ class Form
 		{
 			virtual const char* what() const throw()
 			{
-				return ("Form grade is too low");
+				return ("Bureaucrat grade is too low");
 			}
 		};
-
 		~Form();
 	private:
 		int getSignGrade() const;

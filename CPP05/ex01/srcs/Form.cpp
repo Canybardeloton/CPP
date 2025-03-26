@@ -6,15 +6,20 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:48:23 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/26 09:31:02 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/26 16:05:59 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Form.hpp"
 #include "../include/Bureaucrat.hpp"
 
-Form::Form(std::string name, int signGrade, int execGrade) : _name(name), _signed(false), _signGrade(signGrade), _execGrade(execGrade)
+Form::Form(std::string name, int signGrade, int execGrade) : _name(name), _signed(false), _execGrade(execGrade)
 {
+	if (signGrade < 1)
+		throw (Bureaucrat::GradeTooHighException());
+	if (signGrade > 150)
+		throw (Bureaucrat::GradeTooLowException());
+	_signGrade = signGrade;
 	std::cout << "Form " << _name << " created" << std::endl;
 }
 
@@ -58,8 +63,11 @@ int Form::getExecGrade() const
 void	Form::beSigned(Bureaucrat& b)
 {
 	if (b.getGrade() >= getSignGrade())
-		throw Form::GradeTooLowException();
-	_signed = true;
+		throw (Form::GradeTooLowException());
+	if (_signed == false)
+		_signed = true;
+	else
+		std::cout << b.getName() << " can't sign the form. The form is already signed" << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& form)

@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:34:34 by agiliber          #+#    #+#             */
-/*   Updated: 2025/02/04 14:12:46 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:35:16 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ class Bureaucrat
 		};
 
 	private:
-		void	gradeCheck();
 		void	gradeTooHigh(void);
 		void	gradeTooLow(void);
 

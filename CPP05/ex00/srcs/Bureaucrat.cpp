@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:39:33 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/26 11:25:23 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:38:03 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
-	gradeCheck();
+	if (grade < 1)
+		throw GradeTooHighException();
+	if (grade > 150)
+		throw GradeTooLowException();
 	_grade = grade;
 	std::cout << "Bureaucrat " << this->_name << " created" << std::endl;
 }
@@ -36,23 +39,6 @@ Bureaucrat& Bureaucrat::operator=(Bureaucrat const & copy)
 	return (*this);
 }
 
-void	Bureaucrat::gradeCheck()
-{
-	try
-	{
-		gradeTooHigh();
-		gradeTooLow();
-	}
-	catch (GradeTooHighException& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	catch (GradeTooLowException& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-}
-
 void	Bureaucrat::gradeTooHigh()
 {
 	if (getGrade() > 150)
@@ -67,14 +53,16 @@ void	Bureaucrat::gradeTooLow()
 
 void	Bureaucrat::increment_grade()
 {
+	if (_grade == 1)
+		throw (GradeTooHighException());
 	_grade--;
-	gradeCheck();
 }
 
 void	Bureaucrat::decrement_grade()
 {
+	if (_grade == 150)
+		throw (GradeTooLowException());
 	_grade++;
-	gradeCheck();
 }
 
 std::string Bureaucrat::getName() const

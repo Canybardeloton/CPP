@@ -1,68 +1,68 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:48:23 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/26 09:31:02 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/26 10:32:48 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Form.hpp"
+#include "../include/AForm.hpp"
 #include "../include/Bureaucrat.hpp"
 
-Form::Form(std::string name, int signGrade, int execGrade) : _name(name), _signed(false), _signGrade(signGrade), _execGrade(execGrade)
+AForm::AForm(std::string name, int signGrade, int execGrade) : _name(name), _signed(false), _signGrade(signGrade), _execGrade(execGrade)
 {
 	std::cout << "Form " << _name << " created" << std::endl;
 }
 
-Form::Form(Form const & copy) : _name(copy.getName()), _signed(copy.isSigned()), _signGrade(copy.getSignGrade()), _execGrade(copy.getExecGrade())
+AForm::AForm(AForm const & copy) : _name(copy.getName()), _signed(copy.isSigned()), _signGrade(copy.getSignGrade()), _execGrade(copy.getExecGrade())
 {
 	std::cout << "Form " << _name << " created by copy" << std::endl;
 }
 
-Form& Form::operator=(Form const & copy)
+AForm& AForm::operator=(AForm const & copy)
 {
 	_signed = copy.isSigned();
 	std::cout << "Form " << _name << " assigned" << std::endl;
 	return *this;
 }
 
-Form::~Form()
+AForm::~AForm()
 {
 	std::cout << "Form " << _name << " destroyed" << std::endl;
 }
 
-std::string Form::getName() const
+std::string AForm::getName() const
 {
 	return _name;
 }
 
-bool Form::isSigned() const
+bool AForm::isSigned() const
 {
 	return _signed;
 }
 
-int Form::getSignGrade() const
+int AForm::getSignGrade() const
 {
 	return _signGrade;
 }
 
-int Form::getExecGrade() const
+int AForm::getExecGrade() const
 {
 	return _execGrade;
 }
 
-void	Form::beSigned(Bureaucrat& b)
+void	AForm::beSigned(Bureaucrat& b)
 {
 	if (b.getGrade() >= getSignGrade())
 		throw Form::GradeTooLowException();
 	_signed = true;
 }
 
-std::ostream& operator<<(std::ostream& os, const Form& form)
+std::ostream& operator<<(std::ostream& os, const AForm& form)
 {
 	if (form.isSigned() == true)
 		os << form.getName() << " is signed";

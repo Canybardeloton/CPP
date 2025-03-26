@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 12:29:18 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/26 09:38:40 by agiliber         ###   ########.fr       */
+/*   Created: 2025/03/26 09:44:16 by agiliber          #+#    #+#             */
+/*   Updated: 2025/03/26 11:09:50 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Bureaucrat.hpp"
+#pragma once
 
-int main()
+#include "AForm.hpp"
+
+class PresidentialPardonForm : public AForm
 {
-	std::string name = "Armel";
-	std::string formName = "Form-42069";
-	try
-	{
-		Bureaucrat bbl(name, 51);
-		Form	formy(formName, 52, 55);
-		formy.beSigned(bbl);
-		std::cout << bbl << std::endl;
-		std::cout << formy << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	return 0;
-}
+	public:
+		PresidentialPardonForm(std::string target);
+		PresidentialPardonForm(PresidentialPardonForm const & copy);
+		PresidentialPardonForm& operator=(PresidentialPardonForm const & copy);
+		virtual void	beSigned(Bureaucrat& b);
+		virtual ~PresidentialPardonForm();
+};

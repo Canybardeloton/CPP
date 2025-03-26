@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:48:41 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/26 09:29:36 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:04:11 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 	public:
-		Form(std::string name, int signGrade, int execGrade);
-		Form(Form const & copy);
-		Form& operator=(Form const & copy);
-		void	beSigned(Bureaucrat& b);
-		std::string getName() const;
-		bool isSigned() const;
+		AForm(std::string name, int signGrade, int execGrade);
+		AForm(AForm const & copy);
+		AForm& operator=(AForm const & copy);
+		virtual void	beSigned(Bureaucrat& b) = 0;
+		virtual std::string getName() const;
+		virtual bool isSigned() const;
 
 		class GradeTooLowException : public std::exception
 		{
@@ -35,10 +35,10 @@ class Form
 			}
 		};
 
-		~Form();
+		virtual ~AForm();
 	private:
-		int getSignGrade() const;
-		int getExecGrade() const;
+		virtual int getSignGrade() const;
+		virtual int getExecGrade() const;
 
 		std::string const _name;
 		bool _signed;
@@ -46,4 +46,4 @@ class Form
 		int _execGrade;
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& Bur); // Output stream operator
+std::ostream& operator<<(std::ostream& os, const AForm& Bur); // Output stream operator

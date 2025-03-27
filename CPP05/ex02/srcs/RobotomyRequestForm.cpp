@@ -6,15 +6,15 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:24:44 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/27 10:21:58 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:04:29 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(Bureaucrat &target) : AForm::AForm("Robotomy request", 72, 45), _target(target)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm::AForm("Robotomy request", 72, 45), _target(target)
 {
-	std::cout << "A Robotomy request Form directed at " << _target.getName() << " has been initiated" << std::endl;
+	std::cout << "A Robotomy request Form directed at " << _target << " has been initiated" << std::endl;
 };
 
 RobotomyRequestForm::~RobotomyRequestForm()
@@ -59,7 +59,7 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 	std::cout << "Make some drilling noises : Ppppppppppppp, Babbbbbbbbbbb..." << std::endl;
 	prob = rand() % 2;
 	if (prob == 1)
-		std::cout << "Informs that " << _target.getName() <<  " has been robotomized successfully." << std::endl;
+		std::cout << "Informs that " << _target <<  " has been robotomized successfully." << std::endl;
 	else
-		std::cout << "The robotomy has failed for subject " << _target.getName() << "." << std::endl;
+		std::cout << "The robotomy has failed for subject " << _target << "." << std::endl;
 }

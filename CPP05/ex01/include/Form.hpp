@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:48:41 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/26 18:03:31 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:40:40 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <string>
 #include <exception>
 #include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {

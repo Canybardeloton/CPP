@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:39:33 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/26 15:44:26 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:43:09 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,15 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& bur)
 {
 	os << bur.getName() << ", bureaucrat grade " << bur.getGrade();
 	return os;
+}
+
+void	Bureaucrat::signForm(const std::string name, bool sign)
+{
+	if (sign == true)
+	{
+		std::cout << _name << " has signed the " << name << "." << std::endl;
+	}
+	else
+		std::cout << _name << " can't sign the form " << name << ". The form is already signed" << std::endl;
+
 }

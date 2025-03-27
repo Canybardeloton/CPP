@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:29:18 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/27 09:56:45 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:07:04 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int main()
 		std::cout << bur2 << std::endl;
 		std::cout << bur3 << std::endl;
 
-		PresidentialPardonForm pardon(bur1);
-		ShrubberyCreationForm shrubbery(bur2);
-		RobotomyRequestForm robotomy(bur3);
+		PresidentialPardonForm pardon("Eric");
+		ShrubberyCreationForm shrubbery("Jojo");
+		RobotomyRequestForm robotomy("Manu");
 
 		std::cout << pardon << std::endl;
 		std::cout << shrubbery << std::endl;

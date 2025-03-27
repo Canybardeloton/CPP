@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:48:23 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/26 17:10:37 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:57:23 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,17 @@ void	Form::beSigned(Bureaucrat& b)
 {
 	if (b.getGrade() >= getSignGrade())
 		throw (Form::GradeTooLowException());
-	if (_signed == false)
+	if (_signed == true)
+	{
+		_signed = false;
+		b.signForm(_name, _signed);
 		_signed = true;
+	}
 	else
-		std::cout << b.getName() << " can't sign the form. The form is already signed" << std::endl;
+	{
+		_signed = true;
+		b.signForm(_name, _signed);
+	}
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& form)

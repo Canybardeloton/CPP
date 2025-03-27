@@ -6,15 +6,15 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:23:56 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/27 09:54:21 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:05:11 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(Bureaucrat &target) : AForm::AForm("Shrubbery creation", 145, 137), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm::AForm("Shrubbery creation", 145, 137), _target(target)
 {
-	std::cout << "A Shrubbery creation Form directed at " << _target.getName() << " has been initiated" << std::endl;
+	std::cout << "A Shrubbery creation Form directed at " << _target << " has been initiated" << std::endl;
 };
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
@@ -48,7 +48,7 @@ std::ostream& operator<<(std::ostream& os, const ShrubberyCreationForm& Shrubber
 
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	std::string	outfile = this->_target.getName() + "_shrubbery";
+	std::string	outfile = this->_target + "_shrubbery";
 	std::ofstream	file(outfile.c_str());
 
 	executor.executeForm(*this);

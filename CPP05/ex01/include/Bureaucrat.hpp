@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:34:34 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/26 15:44:40 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:43:05 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <string>
 #include "Form.hpp"
 
+class Form;
+
 class Bureaucrat
 {
 	public:
@@ -27,7 +29,7 @@ class Bureaucrat
 		void	increment_grade();
 		void	decrement_grade();
 		int getGrade() const;
-		void	signForm(Form& form);
+		void	signForm(const std::string name, bool sign);
 		std::string getName() const;
 		~Bureaucrat();
 

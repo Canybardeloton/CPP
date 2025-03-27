@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 10:33:25 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/27 13:32:46 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:30:31 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ Intern::~Intern()
 	std::cout << "An unfortunate Intern has been destructed" << std::endl;
 }
 
-Intern::Intern(Intern& const copy)
+Intern::Intern(Intern const & copy)
 {
 	std::cout << "An unfortunate Intern has been copied" << std::endl;
+	*this = copy;
 }
 
-Intern&	Intern::operator=(Intern& const copy)
+Intern&	Intern::operator=(Intern const & copy)
 {
 	if (this != &copy)
 	{
@@ -42,8 +43,9 @@ Intern&	Intern::operator=(Intern& const copy)
 
 AForm*	Intern::makeForm(std::string name, std::string target)
 {
-	AForm*	(Intern::*formgenerator[3])(std::string) = {&Intern::makePardon, &Intern::makeRobotomy, &Intern::makeShrubbery};
-	std::string	form[3] = {"Presidential pardon", "Robotomy request", "Shrubbery Creation"};
+	typedef AForm* (Intern::*FormFunction)(std::string);
+	FormFunction formgenerator[3] = {&Intern::makePardon, &Intern::makeRobotomy, &Intern::makeShrubbery};
+	std::string	form[3] = {"Presidential pardon", "Robotomy request", "Shrubbery creation"};
 
 	for (int i = 0; i < 3; i++)
 	{

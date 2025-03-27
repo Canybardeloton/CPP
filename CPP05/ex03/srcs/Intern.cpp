@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 10:33:25 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/27 12:05:07 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:32:46 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ Intern&	Intern::operator=(Intern& const copy)
 
 AForm*	Intern::makeForm(std::string name, std::string target)
 {
-	AForm*	(Intern::*formgenerator[3])(std::string) = {&Intern::makePardon(target), &Intern::makeRobotomy(target), &Intern::makeShrubbery(target)};
+	AForm*	(Intern::*formgenerator[3])(std::string) = {&Intern::makePardon, &Intern::makeRobotomy, &Intern::makeShrubbery};
 	std::string	form[3] = {"Presidential pardon", "Robotomy request", "Shrubbery Creation"};
 
-	for (int i = 0, i < 3, i++)
+	for (int i = 0; i < 3; i++)
 	{
 		if (form[i] == name)
 		{
 			std::cout << "Intern create " << name << "." << std::endl;
-			return(formgenerator[i](target));
+			return((this->*formgenerator[i])(target));
 		}
 	}
 	throw (FormGeneratorError());

@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:48:41 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/26 18:23:02 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/27 09:47:09 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <cstdlib>
 #include <exception>
 #include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class AForm
 {
@@ -52,7 +55,7 @@ class AForm
 			}
 		};
 
-		virtual void	execute(Bureaucrat const & executor) = 0;
+		virtual void	execute(Bureaucrat const & executor) const = 0;
 		virtual ~AForm();
 
 		int getSignGrade() const;
@@ -65,4 +68,4 @@ class AForm
 		int _execGrade;
 };
 
-std::ostream& operator<<(std::ostream& os, const AForm& Bur);
+std::ostream& operator<<(std::ostream& os, const AForm& form);

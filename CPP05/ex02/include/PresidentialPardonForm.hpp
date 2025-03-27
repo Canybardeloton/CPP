@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 09:44:16 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/26 18:01:04 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/27 09:37:33 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class PresidentialPardonForm : public AForm
 		PresidentialPardonForm& operator=(PresidentialPardonForm const & copy);
 		virtual ~PresidentialPardonForm();
 
-		void execute(Bureaucrat const & executor) const;
+		virtual void execute(Bureaucrat const & executor) const;
 
 	private:
 		Bureaucrat& _target;

@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 09:44:38 by agiliber          #+#    #+#             */
-/*   Updated: 2025/03/26 17:57:19 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/03/27 10:19:13 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include "AForm.hpp"
 #include <iostream>
+#include <ctime>
 #include <exception>
 #include <ostream>
 #include <string>
@@ -26,7 +27,7 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm& operator=(RobotomyRequestForm const & copy);
 		virtual ~RobotomyRequestForm();
 
-		void execute(Bureaucrat const & executor) const;
+		virtual void execute(Bureaucrat const & executor) const;
 
 	private:
 		Bureaucrat& _target;

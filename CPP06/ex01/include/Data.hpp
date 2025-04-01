@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 10:34:34 by agiliber          #+#    #+#             */
-/*   Updated: 2025/04/01 16:39:41 by agiliber         ###   ########.fr       */
+/*   Created: 2025/04/01 16:33:01 by agiliber          #+#    #+#             */
+/*   Updated: 2025/04/01 16:38:31 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
-#include <exception>
-#include <ostream>
 #include <string>
-#include <cstdlib>
+#include <ostream>
 #include <sstream>
-#include <iomanip>
-#include <limits.h>
-#include <cmath>
+#include <iostream>
 
-class ScalarConverter
+class Data
 {
-	public:
-		static void	convert(std::string input);
+	public :
+		Data();
+		Data(Data const & copy);
+		Data& operator=(Data const & copy);
+		std::string	getName() const;
+		~Data();
 
-	private:
-		ScalarConverter();
-		ScalarConverter(ScalarConverter const & copy);
-		ScalarConverter& operator=(ScalarConverter const & copy);
-		~ScalarConverter();
+	private :
+		std::string _name;
 };
+
+std::ostream &	operator<<(std::ostream &o, Data const &rSym);

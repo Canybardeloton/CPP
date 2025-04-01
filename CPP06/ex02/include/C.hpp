@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   C.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:34:34 by agiliber          #+#    #+#             */
-/*   Updated: 2025/04/01 16:39:41 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/04/01 16:07:38 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,8 @@
 #include <iomanip>
 #include <limits.h>
 #include <cmath>
+#include "Base.hpp"
 
-class ScalarConverter
+class C : public Base
 {
-	public:
-		static void	convert(std::string input);
-
-	private:
-		ScalarConverter();
-		ScalarConverter(ScalarConverter const & copy);
-		ScalarConverter& operator=(ScalarConverter const & copy);
-		~ScalarConverter();
 };

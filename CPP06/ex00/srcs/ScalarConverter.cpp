@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:39:33 by agiliber          #+#    #+#             */
-/*   Updated: 2025/04/01 15:58:34 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/04/02 10:40:08 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ static void	convertFloat(std::string input)
 	else
 		std::cout << "char : not printable" << std::endl;
 	std::cout << "int : " << nb << std::endl;
-	std::cout << "float : " << std::fixed << std::setprecision(2) <<num << "f" << std::endl;
-	std::cout << "double : " << std::fixed << std::setprecision(2) << static_cast<double>(static_cast<int>(num)) << std::endl;
+	std::cout << "float : " << std::fixed << std::setprecision(1) <<num << "f" << std::endl;
+	std::cout << "double : " << std::fixed << std::setprecision(1) << static_cast<double>(static_cast<int>(num)) << std::endl;
 }
 
 static void	convertDouble(std::string input)
@@ -77,8 +77,8 @@ static void	convertDouble(std::string input)
 	else
 		std::cout << "char : not printable" << std::endl;
 	std::cout << "int : " << nb << std::endl;
-	std::cout << "float : " << std::fixed << std::setprecision(2) << static_cast<float>(num) << "f" << std::endl;
-	std::cout << "double : " << std::fixed << std::setprecision(2) << num << std::endl;
+	std::cout << "float : " << std::fixed << std::setprecision(1) << static_cast<float>(num) << "f" << std::endl;
+	std::cout << "double : " << std::fixed << std::setprecision(1) << num << std::endl;
 }
 
 static void	inffMin()

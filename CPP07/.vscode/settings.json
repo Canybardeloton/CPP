@@ -46,6 +46,7 @@
 		"ranges": "cpp",
 		"span": "cpp",
 		"stdexcept": "cpp",
-		"typeinfo": "cpp"
+		"typeinfo": "cpp",
+		"cstring": "cpp"
 	}
 }

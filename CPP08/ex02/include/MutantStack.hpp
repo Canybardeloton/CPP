@@ -6,51 +6,69 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 15:18:45 by agiliber          #+#    #+#             */
-/*   Updated: 2025/04/09 13:20:45 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/04/14 10:17:37 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
-#include <vector>
 #include <string>
-#include <exception>
-#include <algorithm>
+#include <stack>
+#include <list>
 
-template <typename T>
-class Stack
+template <class T>
+class MutantStack : public std::stack<T>
 {
 	public :
-		void	push(T& element);
-
-		class EmptyVector : public std::exception
-		{
-				public:
-				const char* what() const throw()
-				{
-					return ("Not enough element in the container.");
-				}
-		};
-
-	private :
-		Stack();
-		Stack(const Stack& copy);
-		Stack&	operator=(const Stack& copy);
-		~Stack();
-		std::vector<T&> _tab;
-};
-
-class MutantStack : public Stack
-{
-	public :
-		void	push(T& element);
-
 		MutantStack();
-		MutantStack(const MutantStack& copy);
-		MutantStack&	operator=(const MutantStack& copy);
+		MutantStack(MutantStack<T> const &copy);
+		MutantStack<T>&	operator=(MutantStack<T> const &copy);
 		~MutantStack();
 
+		typedef	typename std::stack<T>::container_type::iterator	iterator;
+		iterator			begin();
+		iterator			end();
+
 	private :
-		std::vector<T&> _tab;
 };
+
+template <typename T>
+MutantStack<T>::MutantStack()
+{
+	std::cout << "MutantStack initiated." << std::endl;
+}
+
+template <typename T>
+MutantStack<T>::MutantStack(MutantStack<T> const &copy) : std::stack<T>(copy)
+{
+	std::cout << "MutantStack copy initiated." << std::endl;
+}
+
+template <typename T>
+MutantStack<T>&	MutantStack<T>::operator=(MutantStack<T> const &copy)
+{
+	if (this != &copy)
+	{
+		std::cout << "MutantStack assignement initiated." << std::endl;
+	}
+	return (*this);
+}
+
+template <typename T>
+MutantStack<T>::~MutantStack()
+{
+	std::cout << "MutantStack destructed." << std::endl;
+}
+
+template <typename T>
+typename MutantStack<T>::iterator MutantStack<T>::begin()
+{
+	return std::stack<T>::c.begin();
+}
+
+template <typename T>
+typename MutantStack<T>::iterator MutantStack<T>::end()
+{
+	return std::stack<T>::c.end();
+}

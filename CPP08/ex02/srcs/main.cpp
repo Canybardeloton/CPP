@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 15:28:10 by agiliber          #+#    #+#             */
-/*   Updated: 2025/04/09 13:15:40 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/04/14 10:17:53 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,39 @@ int main()
 	std::stack<int> s(mstack);
 	return 0;
 }
+
+// int main()
+// {
+// 	std::list<int> mstack;
+
+// 	mstack.push_front(5);
+// 	mstack.push_front(17);
+
+// 	std::cout << mstack.front() << std::endl;
+
+// 	mstack.pop_front();
+
+// 	std::cout << mstack.size() << std::endl;
+
+// 	mstack.push_front(3);
+// 	mstack.push_front(5);
+// 	mstack.push_front(737);
+
+// 	//[...]
+// 	mstack.push_front(0);
+
+// 	std::list<int>::iterator it = mstack.begin();
+// 	std::list<int>::iterator ite = mstack.end();
+
+// 	++it;
+// 	--it;
+
+// 	while (it != ite)
+// 	{
+// 		ite--;
+// 		std::cout << *ite << std::endl;
+// 	}
+
+// 	std::list<int> s(mstack);
+// 	return 0;
+// }

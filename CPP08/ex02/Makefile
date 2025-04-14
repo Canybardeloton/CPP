@@ -6,7 +6,7 @@
 #    By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/27 13:42:06 by agiliber          #+#    #+#              #
-#    Updated: 2025/04/09 12:59:31 by agiliber         ###   ########.fr        #
+#    Updated: 2025/04/14 10:11:51 by agiliber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC_DIR = srcs/
 OBJ_DIR = obj/
 DEP_DIR = dep/
 
-SRC = main.cpp MutantStack.cpp
+SRC = main.cpp
 OBJ = ${SRC:%.cpp=%.o}
 DEP = ${OBJ:%.o=%.d}
 

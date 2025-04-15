@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 15:18:45 by agiliber          #+#    #+#             */
-/*   Updated: 2025/04/15 11:47:33 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/04/15 15:14:48 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,12 @@ class BitExch
 		BitExch&	operator=(const BitExch& copy);
 		~BitExch();
 
-		void	matchDate(std::map<std::string, float>& input, std::map<std::string, float>& ref);
-
 	private :
 		std::string	_file;
 
 };
 
-bool	CheckFile(std::map<std::string, float>& data, std::string to_parse, std::string file);
+void	matchDate(const std::string& date, float value, std::map<std::string, float>& ref);
+bool	CheckFile(std::map<std::string, float>& data, std::map<std::string, float>& ref, std::string to_parse, std::string file);
 bool	parseDataLine(const std::string& line, std::string& date, float& value, std::string to_parse);
 bool	isValidDate(const std::string& date);

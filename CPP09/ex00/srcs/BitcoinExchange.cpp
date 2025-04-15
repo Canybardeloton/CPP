@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 12:20:39 by agiliber          #+#    #+#             */
-/*   Updated: 2025/04/15 11:48:02 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/04/15 15:28:43 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,39 +76,43 @@ bool	parseDataLine(const std::string& line, std::string& date, float& value, std
 {
 	size_t delimiterPos = line.find(to_parse);
 	if (delimiterPos == std::string::npos)
-		return false;
+	{
+		std::cerr << "Error: bad input => " << line << std::endl;
+		return (false);
+	}
 	date = line.substr(0, delimiterPos);
 	if (!isValidDate(date))
 	{
-		std::cerr << "Wrong date" << std::endl;
-		return false;
+		std::cerr << "Error: bad input => " << line << std::endl;
+		return (false);
 	}
-	if (to_parse == ",")
-		return (true);
 	std::string valueStr = line.substr(delimiterPos + to_parse.size());
 	try
 	{
 		value = std::atof(valueStr.c_str());
-		if (value < 0)
+		if (to_parse == " | ")
 		{
-			std::cerr << "Error: not a positive number." << std::endl;
-			return false;
+			if (value < 0)
+			{
+				std::cerr << "Error: not a positive number." << std::endl;
+				return (false);
+			}
+			if (value > 1000)
+			{
+				std::cerr << "Error: too large a number." << std::endl;
+				return (false);
+			}
 		}
-		if (value > 1000)
-		{
-			std::cerr << "Error: too large a number." << std::endl;
-			return false;
-		}
-		return true;
 	}
 	catch (const std::exception& e)
 	{
 		std::cerr << "Error: invalid value format." << std::endl;
-		return false;
+		return (false);
 	}
+	return (true);
 }
 
-bool	CheckFile(std::map<std::string, float>& data, std::string to_parse, std::string file)
+bool	CheckFile(std::map<std::string, float>& data, std::map<std::string, float>& ref, std::string to_parse, std::string file)
 {
 	std::string	line;
 	std::ifstream	in(file.c_str());
@@ -116,7 +120,10 @@ bool	CheckFile(std::map<std::string, float>& data, std::string to_parse, std::st
 		throw(WrongFileException());
 	std::getline(in, line);
 	if (checkHeader(line, to_parse) == false)
+	{
+		std::cerr << "Bad file header" << std::endl;
 		return (0);
+	}
 	while (std::getline(in, line))
 	{
 		float	value;
@@ -124,13 +131,30 @@ bool	CheckFile(std::map<std::string, float>& data, std::string to_parse, std::st
 		if (parseDataLine(line, date, value, to_parse))
 		{
 			data[date] = value;
+			if (to_parse == " | " && !ref.empty())
+				matchDate(date, value, ref);
 		}
 	}
 	in.close();
 	return (!data.empty());
 }
 
-void	BitExch::matchDate(std::map<std::string, float>& input, std::map<std::string, float>& ref)
+void	matchDate(const std::string& date, float value, std::map<std::string, float>& ref)
 {
-
+	std::map<std::string, float>::iterator exact = ref.find(date);
+	if (exact != ref.end())
+	{
+		std::cout << date << " => " << value << " = " << exact->second * value << std::endl;
+		return;
+	}
+	std::map<std::string, float>::iterator it = ref.lower_bound(date);
+	if (it != ref.begin() && it != ref.end())
+	{
+		--it;
+		std::cout << date << " => " << value << " = " << it->second * value << std::endl;
+	}
+	else if (it == ref.begin())
+		std::cout << date << " => " << value << " = " << it->second * value << std::endl;
+	else
+		std::cerr << "Error: no Bitcoin price data available." << std::endl;
 }

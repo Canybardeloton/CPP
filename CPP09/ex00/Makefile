@@ -6,7 +6,7 @@
 #    By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/27 13:42:06 by agiliber          #+#    #+#              #
-#    Updated: 2025/04/14 12:22:05 by agiliber         ###   ########.fr        #
+#    Updated: 2025/04/15 09:35:55 by agiliber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC_DIR = srcs/
 OBJ_DIR = obj/
 DEP_DIR = dep/
 
-SRC = main.cpp
+SRC = main.cpp BitcoinExchange.cpp
 OBJ = ${SRC:%.cpp=%.o}
 DEP = ${OBJ:%.o=%.d}
 

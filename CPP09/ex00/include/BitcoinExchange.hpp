@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 15:18:45 by agiliber          #+#    #+#             */
-/*   Updated: 2025/04/14 16:34:04 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/04/15 11:47:33 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <exception>
 #include <algorithm>
 #include <map>
+#include <cstdlib>
 
 class WrongFileException : public std::exception
 {
@@ -33,17 +34,17 @@ class BitExch
 {
 	public :
 		BitExch(std::string	file_search);
-		BitExch(BitExch& const copy);
-		BitExch&	operator=(BitExch& const copy);
+		BitExch(const BitExch& copy);
+		BitExch&	operator=(const BitExch& copy);
 		~BitExch();
 
-		bool	CheckInputFile(std::map<std::string, float>& data);
-		bool	CheckOutputFile(std::map<std::string, float>& data);
-		bool	parseDataLine(const std::string& line, std::string& date, float& value);
-		bool	parseDataOutLine(const std::string& line, std::string& date, float& value);
-		bool	isValidDate(const std::string& date);
+		void	matchDate(std::map<std::string, float>& input, std::map<std::string, float>& ref);
 
 	private :
 		std::string	_file;
 
 };
+
+bool	CheckFile(std::map<std::string, float>& data, std::string to_parse, std::string file);
+bool	parseDataLine(const std::string& line, std::string& date, float& value, std::string to_parse);
+bool	isValidDate(const std::string& date);

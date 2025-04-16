@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:30:50 by agiliber          #+#    #+#             */
-/*   Updated: 2025/04/15 15:56:16 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/04/16 10:09:33 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ int	main(int ac, char **av)
 		std::cerr << "Error : bad argument" << std::endl;
 		return (0);
 	}
+	fillStack(av[1]);
 }

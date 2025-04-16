@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:31:04 by agiliber          #+#    #+#             */
-/*   Updated: 2025/04/15 17:44:05 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/04/16 11:44:02 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 bool	checkDigits(const std::string& input)
 {
-	std::cout << input << std::endl;
 	for (size_t i = 0; i < input.size(); i++)
 	{
 		if (!isdigit(input[i]) && input[i] != '+' && input[i] != '-' && input[i] != '/' && input[i] != '*' && input[i] != ' ')
 			return (false);
+		else if (input[i] == ')' || input[i] == '(')
+			return (false);
 		else if (isdigit(input[i]))
 		{
-			if (input[i] > 10)
+			if ((input[i] - '0') > 10)
 				return (false);
 		}
 	}
@@ -30,67 +31,65 @@ bool	checkDigits(const std::string& input)
 
 bool	checkInput(const std::string& input)
 {
-	if (!checkDigits(input) || input.find("(") || input.find(")"))
+	if (!checkDigits(input))
 		return (false);
 	return (true);
 }
 
-std::stack<size_t>	getOperands(const std::string& input)
+void processToken(std::stack<int>& numbers, char token)
 {
-	std::stack<size_t> operands;
-	for (size_t i = 0; i < input.size(); i++)
+	if (isdigit(token))
 	{
-		if (input[i] == '+'&& input[i] == '-' && input[i] == '/' && input[i] == '*')
-			operands.push(input[i]);
+		numbers.push(token - '0');
 	}
-	return (operands);
-}
-
-size_t	calculate(char operand, int num1, int num2)
-{
-	if (operand == '+')
-		return (num1 + num2);
-	else if (operand == '-')
-		return (num1 - num2);
-	else if (operand == '*')
-		return (num1 * num2);
-	else if (operand == '/')
-		return (num1 / num2);
-	return (0);
-}
-
-void	fillStack(const std::string& input)
-{
-	std::stack<char> numbers;
-	std::stack<char> tmp;
-	std::stack<size_t> operands;
-
-	size_t	result = 0;
-
-	for (size_t i = 0; i < input.size(); i++)
+	else if (token == '+' || token == '-' || token == '*' || token == '/')
 	{
-		if (isdigit(input[i]))
-			numbers.push(input[i]);
-	}
-	operands = getOperands(input);
-	if (operands.empty())
-	{
-		std::cerr << "Error: no operands" << std::endl;
-		return;
-	}
-	while (!operands.empty())
-	{
-		if (!isdigit(numbers.top()))
+		if (numbers.size() < 2)
 		{
-			std::cerr << "Error: bad syntax" << std::endl;
-			return;
+			std::cerr << "Error: not enough operands for operator" << std::endl;
+			exit(1);
 		}
-		tmp.push(numbers.top());
+		int b = numbers.top();
 		numbers.pop();
-		result = calculate(operands.top(), tmp.top(), numbers.top());
-		operands.pop();
+		int a = numbers.top();
 		numbers.pop();
+
+		int result = 0;
+		switch (token)
+		{
+			case '+': result = a + b; break;
+			case '-': result = a - b; break;
+			case '*': result = a * b; break;
+			case '/':
+			if (b == 0)
+			{
+				std::cerr << "Error: division by zero" << std::endl;
+				exit(1);
+			}
+			result = a / b;
+			break;
+		}
+
 		numbers.push(result);
 	}
+}
+
+void fillStack(const std::string& input)
+{
+	std::stack<int> numbers;
+
+	for (size_t i = 0; i < input.size(); i++)
+	{
+		if (input[i] == ' ')
+			continue;
+		processToken(numbers, input[i]);
+	}
+
+	if (numbers.size() != 1)
+	{
+		std::cerr << "Error: invalid RPN expression" << std::endl;
+		return;
+	}
+
 	std::cout << numbers.top() << std::endl;
 }

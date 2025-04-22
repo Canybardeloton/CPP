@@ -6,7 +6,7 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:31:04 by agiliber          #+#    #+#             */
-/*   Updated: 2025/04/16 11:44:02 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/04/22 11:22:33 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void processToken(std::stack<int>& numbers, char token)
 			result = a / b;
 			break;
 		}
-
 		numbers.push(result);
 	}
 }
@@ -84,12 +83,10 @@ void fillStack(const std::string& input)
 			continue;
 		processToken(numbers, input[i]);
 	}
-
 	if (numbers.size() != 1)
 	{
 		std::cerr << "Error: invalid RPN expression" << std::endl;
 		return;
 	}
-
 	std::cout << numbers.top() << std::endl;
 }

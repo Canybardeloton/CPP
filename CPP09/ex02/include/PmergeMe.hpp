@@ -6,40 +6,43 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:19:53 by agiliber          #+#    #+#             */
-/*   Updated: 2025/04/16 15:27:50 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/04/22 11:14:51 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <string>
-#include <iostream>
 #include <vector>
 #include <deque>
-#include <chrono>
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+#include <climits>
+#include <cctype>
+#include <algorithm>
 
-
-class Pmergeme
+class PmergeMe
 {
 	public:
-		Pmergeme(unsigned int num);
-		Pmergeme(const Pmergeme& copy);
-		Pmergeme&	operator=(const Pmergeme& copy);
-		~Pmergeme();
+		PmergeMe();
+		PmergeMe(const PmergeMe& src);
+		PmergeMe& operator=(const PmergeMe& src);
+		~PmergeMe();
 
-		template<typename T>
-		void	MergeSort(T& container, int left, int right);
+		bool parseInput(int argc, char** argv);
 
-		template <typename T>
-		std::vector<int>	JacobsthalSequence(int n);
+		void sortWithVector();
+		void sortWithDeque();
+
+		void displayResults(double vectorTime, double dequeTime);
+		void displayBeforeSort();
+		void displayAfterSort();
 
 	private:
-		std::vector<int>	_vec;
-		std::deque<int>		_dqe;
+		std::vector<int> _vectorContainer;
+		std::deque<int> _dequeContainer;
 
-	void	before(const std::string& input);
-	void	after(const std::string& final_input);
-	bool	checkInput(const std::string& input);
-	void	sortWithVector();
+		std::vector<int> JacobsthalSequence(int n);
 
+		bool isPositiveInteger(const char* str);
 };

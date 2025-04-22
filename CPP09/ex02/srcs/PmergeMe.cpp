@@ -6,197 +6,282 @@
 /*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:23:59 by agiliber          #+#    #+#             */
-/*   Updated: 2025/04/16 15:28:47 by agiliber         ###   ########.fr       */
+/*   Updated: 2025/04/22 11:14:27 by agiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/PmergeMe.hpp"
 
-Pmergeme::Pmergeme(unsigned int num)
+PmergeMe::PmergeMe()
 {
 }
 
-Pmergeme::Pmergeme(const Pmergeme& copy) : _vec(copy._vec), _dqe(copy._dqe)
+PmergeMe::PmergeMe(const PmergeMe& src)
 {
+	*this = src;
 }
 
-Pmergeme&	Pmergeme::operator=(const Pmergeme& copy)
+PmergeMe& PmergeMe::operator=(const PmergeMe& src)
 {
-	if (this != &copy)
+	if (this != &src)
 	{
-		this->_vec = copy._vec;
-		this->_dqe = copy._dqe;
+		_vectorContainer = src._vectorContainer;
+		_dequeContainer = src._dequeContainer;
 	}
-	return (*this);
+	return *this;
 }
-Pmergeme::~Pmergeme()
+
+PmergeMe::~PmergeMe()
 {
 }
 
-void	Pmergeme::before(const std::string& input)
+bool	PmergeMe::isPositiveInteger(const char* str)
 {
-	std::cout << "Before : " << input << std::endl;
-}
-
-void	Pmergeme::after(const std::string& final_input)
-{
-	std::cout << "After : " << final_input << std::endl;
-}
-
-bool	Pmergeme::checkInput(const std::string& input)
-{
-	if (input.size() > 5998)
+	if (!str || *str == '\0')
 		return (false);
-	for (size_t i = 0; i < input.size(); i++)
+	for (int i = 0; str[i] != '\0'; i++)
 	{
-		if (!isdigit(input[i]) && input[i] != ' ')
+		if (!std::isdigit(str[i]))
 			return (false);
+	}
+	long num = std::strtol(str, NULL, 10);
+	if (num > INT_MAX || num < 0)
+		return (false);
+	return (true);
+}
+
+bool	PmergeMe::parseInput(int argc, char** argv)
+{
+	for (int i = 1; i < argc; i++)
+	{
+		if (!isPositiveInteger(argv[i]))
+		{
+			std::cerr << "Error: invalid input" << std::endl;
+			return (false);
+		}
+		int num = std::atoi(argv[i]);
+		_vectorContainer.push_back(num);
+		_dequeContainer.push_back(num);
+	}
+	if (_vectorContainer.empty())
+	{
+		std::cerr << "Error: no valid input" << std::endl;
+		return (false);
 	}
 	return (true);
 }
 
-template<typename T>
-void	Pmergeme::MergeSort(T& container, int left, int right)
+void	PmergeMe::displayBeforeSort()
 {
-	if (left >= right) return;
-
-	int mid = left + (right - left) / 2;
-	mergeSort(container, left, mid);
-	mergeSort(container, mid + 1, right);
-
-	T temp(right - left + 1);
-	int i = left;
-	int j = mid + 1;
-	int k = 0;
-
-	while (i <= mid && j <= right)
+	std::cout << "Before: ";
+	for (size_t i = 0; i < _vectorContainer.size(); i++)
 	{
-		if (container[i] <= container[j])
-			temp[k++] = container[i++];
-		else
-			temp[k++] = container[j++];
+		std::cout << _vectorContainer[i];
+		if (i < _vectorContainer.size() - 1)
+			std::cout << " ";
 	}
-	while (i <= mid)
-		temp[k++] = container[i++];
-	while (j <= right)
-		temp[k++] = container[j++];
-	for (i = 0; i < k; i++)
-		container[left + i] = temp[i];
+	std::cout << std::endl;
 }
 
-template <typename T>
-std::vector<int>	Pmergeme::JacobsthalSequence(int n)
+void	PmergeMe::displayAfterSort()
+{
+	std::cout << "After: ";
+	for (size_t i = 0; i < _vectorContainer.size(); i++)
+	{
+		std::cout << _vectorContainer[i];
+		if (i < _vectorContainer.size() - 1)
+			std::cout << " ";
+	}
+	std::cout << std::endl;
+}
+
+void	PmergeMe::displayResults(double vectorTime, double dequeTime)
+{
+	std::cout << "Time to process a range of " << _vectorContainer.size()
+			  << " elements with std::vector : " << vectorTime << " us" << std::endl;
+	std::cout << "Time to process a range of " << _dequeContainer.size()
+			  << " elements with std::deque : " << dequeTime << " us" << std::endl;
+}
+
+std::vector<int> PmergeMe::JacobsthalSequence(int n)
 {
 	std::vector<int> jacobsthal;
 
 	if (n <= 0)
 		return (jacobsthal);
-
 	jacobsthal.push_back(0);
 	if (n > 1)
 		jacobsthal.push_back(1);
-
-	for (int i = 2; i < n; i++)
+	int i = 2;
+	while (i < n && i < 100)
 	{
-		int next = jacobsthal[i-1] + 2 * jacobsthal[i-2];
+		int next = jacobsthal[i - 1] + 2 * jacobsthal[i - 2];
 		jacobsthal.push_back(next);
+		i++;
 	}
 	return (jacobsthal);
 }
 
-void	Pmergeme::sortWithVector()
+void	PmergeMe::sortWithVector()
 {
-	if (_vec.empty()) return;
-
-	// Stocker l'élément impair s'il existe
+	if (_vectorContainer.empty())
+		return;
 	int extraElement = -1;
 	bool hasExtraElement = false;
-
-	if (_vec.size() % 2 != 0) {
-		extraElement = _vec.back();
-		_vec.pop_back();
+	if (_vectorContainer.size() % 2 != 0)
+	{
+		extraElement = _vectorContainer.back();
+		_vectorContainer.pop_back();
 		hasExtraElement = true;
 	}
-
-	// Former des paires où le premier élément est le plus grand
 	std::vector<std::pair<int, int> > pairs;
-	for (size_t i = 0; i < _vec.size(); i += 2) {
-		if (_vec[i] > _vec[i+1])
-			pairs.push_back(std::make_pair(_vec[i], _vec[i+1]));
+	for (size_t i = 0; i + 1 < _vectorContainer.size(); i += 2)
+	{
+		if (_vectorContainer[i] > _vectorContainer[i + 1])
+			pairs.push_back(std::make_pair(_vectorContainer[i], _vectorContainer[i + 1]));
 		else
-			pairs.push_back(std::make_pair(_vec[i+1], _vec[i]));
+			pairs.push_back(std::make_pair(_vectorContainer[i + 1], _vectorContainer[i]));
 	}
-
-	// Trier les paires par leur premier élément
-	// (utilisation d'un tri par insertion pour la simplicité)
-	for (size_t i = 1; i < pairs.size(); i++) {
+	if (pairs.empty())
+	{
+		if (hasExtraElement)
+			_vectorContainer.push_back(extraElement);
+		return;
+	}
+	for (size_t i = 1; i < pairs.size(); i++)
+	{
 		std::pair<int, int> key = pairs[i];
 		int j = i - 1;
 
-		while (j >= 0 && pairs[j].first > key.first) {
+		while (j >= 0 && pairs[j].first > key.first)
+		{
+			pairs[j + 1] = pairs[j];
+			j--;
+		}
+		pairs[j + 1] = key;
+	}
+
+	std::vector<int> mainChain;
+	std::vector<int> pendChain;
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
+		mainChain.push_back(pairs[i].first);
+		pendChain.push_back(pairs[i].second);
+	}
+	if (!pendChain.empty())
+		mainChain.insert(mainChain.begin(), pendChain[0]);
+	std::vector<int> jacobsthalIdx = JacobsthalSequence(pendChain.size());
+	std::vector<bool> inserted(pendChain.size(), false);
+	inserted[0] = true;
+	for (size_t i = 1; i < jacobsthalIdx.size(); i++)
+	{
+		int idx = jacobsthalIdx[i];
+		if (idx > 0 && idx < static_cast<int>(pendChain.size()) && !inserted[idx])
+		{
+			int val = pendChain[idx];
+			std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), val);
+			mainChain.insert(pos, val);
+			inserted[idx] = true;
+		}
+	}
+	for (size_t i = 1; i < pendChain.size(); i++)
+	{
+		if (!inserted[i])
+		{
+			int val = pendChain[i];
+			std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), val);
+			mainChain.insert(pos, val);
+		}
+	}
+	if (hasExtraElement)
+	{
+		std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), extraElement);
+		mainChain.insert(pos, extraElement);
+	}
+	_vectorContainer = mainChain;
+}
+
+void	PmergeMe::sortWithDeque()
+{
+	if (_dequeContainer.empty())
+		return;
+
+	int extraElement = -1;
+	bool hasExtraElement = false;
+	if (_dequeContainer.size() % 2 != 0)
+	{
+		extraElement = _dequeContainer.back();
+		_dequeContainer.pop_back();
+		hasExtraElement = true;
+	}
+
+	std::deque<std::pair<int, int> > pairs;
+	for (size_t i = 0; i + 1 < _dequeContainer.size(); i += 2)
+	{
+		if (_dequeContainer[i] > _dequeContainer[i + 1])
+			pairs.push_back(std::make_pair(_dequeContainer[i], _dequeContainer[i+1]));
+		else
+			pairs.push_back(std::make_pair(_dequeContainer[i+1], _dequeContainer[i]));
+	}
+	if (pairs.empty())
+	{
+		if (hasExtraElement)
+		{
+			_dequeContainer.push_back(extraElement);
+		}
+		return;
+	}
+	for (size_t i = 1; i < pairs.size(); i++)
+	{
+		std::pair<int, int> key = pairs[i];
+		int j = i - 1;
+
+		while (j >= 0 && pairs[j].first > key.first)
+		{
 			pairs[j+1] = pairs[j];
 			j--;
 		}
 		pairs[j+1] = key;
 	}
-
-	// Créer la chaîne principale avec les premiers éléments de chaque paire
-	std::vector<int> mainChain;
-	std::vector<int> pendChain;
-
-	for (size_t i = 0; i < pairs.size(); i++) {
+	std::deque<int> mainChain;
+	std::deque<int> pendChain;
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
 		mainChain.push_back(pairs[i].first);
 		pendChain.push_back(pairs[i].second);
 	}
-
-	// Insertion des éléments de pendChain dans mainChain
-	// en utilisant la séquence de Jacobsthal
-
-	// Insérer le premier élément de pendChain
-	mainChain.insert(mainChain.begin(), pendChain[0]);
-
-	// Générer la séquence de Jacobsthal
+	if (!pendChain.empty())
+	{
+		mainChain.push_front(pendChain[0]);
+	}
 	std::vector<int> jacobsthalIdx = JacobsthalSequence(pendChain.size());
-
-	// Insérer les éléments restants
-	for (size_t i = 1; i < jacobsthalIdx.size() && i < pendChain.size(); i++) {
+	std::vector<bool> inserted(pendChain.size(), false);
+	if (!pendChain.empty())
+		inserted[0] = true;
+	for (size_t i = 1; i < jacobsthalIdx.size(); i++)
+	{
 		int idx = jacobsthalIdx[i];
-		if (idx < (int)pendChain.size()) {
-			// Trouver la position d'insertion en utilisant la recherche binaire
+		if (idx > 0 && static_cast<size_t>(idx) < pendChain.size() && !inserted[idx])
+		{
 			int val = pendChain[idx];
-			int left = 0;
-			int right = mainChain.size() - 1;
-
-			while (left <= right) {
-				int mid = left + (right - left) / 2;
-				if (mainChain[mid] < val)
-					left = mid + 1;
-				else
-					right = mid - 1;
-			}
-
-			// Insérer à la position correcte
-			mainChain.insert(mainChain.begin() + left, val);
+			std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), val);
+			mainChain.insert(pos, val);
+			inserted[idx] = true;
 		}
 	}
-
-	// Insérer l'élément impair s'il existe
-	if (hasExtraElement) {
-		// Trouver la position d'insertion pour l'élément impair
-		int left = 0;
-		int right = mainChain.size() - 1;
-
-		while (left <= right) {
-			int mid = left + (right - left) / 2;
-			if (mainChain[mid] < extraElement)
-				left = mid + 1;
-			else
-				right = mid - 1;
+	for (size_t i = 1; i < pendChain.size(); i++)
+	{
+		if (!inserted[i])
+		{
+			int val = pendChain[i];
+			std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), val);
+			mainChain.insert(pos, val);
 		}
-
-		mainChain.insert(mainChain.begin() + left, extraElement);
 	}
-
-	// Mettre à jour le conteneur
-	_vec = mainChain;
+	if (hasExtraElement)
+	{
+		std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), extraElement);
+		mainChain.insert(pos, extraElement);
+	}
+	_dequeContainer = mainChain;
 }
